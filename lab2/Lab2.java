@@ -1,7 +1,7 @@
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-import java.util.Arrays;
+import java.time.LocalDate;
 
 public class Lab2 {
 
@@ -78,7 +78,6 @@ public class Lab2 {
 		System.out.println("/**************************************/");
 
 
-
 		//2. Estaturas:
 		System.out.println("/**************************************/");
 		System.out.println("2. Estaturas");
@@ -97,7 +96,6 @@ public class Lab2 {
 		}
 		System.out.println("La persona mas baja mide: " + masBajo + " y la persona mas alta mide: " + masAlto);
 		System.out.println("/**************************************/");
-
 
 
 		//3. Generos
@@ -130,23 +128,40 @@ public class Lab2 {
 			cadenaNombres += ",";
 		}
 
-
 		System.out.println(cadenaNombres);
 		System.out.println("/**************************************/");
 
 	
-		// falta ternminar la definicion del metodo
 		//5. Edades:
-		//System.out.println("/**************************************/");
-		//String[] fechasDeNacimiento = getFechasDeNacimientos(data);
-		
-		//System.out.println("/**************************************/");
-		
+		System.out.println("/**************************************/");
+		System.out.println("5. Edades");
+		LocalDate[] fechasDeNacimiento = getFechasDeNacimientos(data);
+		long menorEdad = ChronoUnit.DAYS.between(LocalDate.now(), fechasDeNacimiento[0]);
+		menorEdad = Math.abs(menorEdad);
 
+		for(LocalDate i:fechasDeNacimiento){
+			long dias = ChronoUnit.DAYS.between(LocalDate.now(), i);
+			dias = Math.abs(dias);
 
+			long añosEdad = dias / 365; 
+			long diasEdad = dias % 365;
+			System.out.println(añosEdad + " años y " + diasEdad + " dias");
+
+			if(dias < menorEdad){
+				menorEdad = dias;
+			}
+	
+		}
+
+		long menorEdadAños = menorEdad / 365;
+		long menorEdadDias = menorEdad % 365;
+		System.out.println("La persona con menor edad tiene " + menorEdadAños + " años y " + menorEdadDias + " dias");
+		
+		System.out.println("/**************************************/");
 	}
 
 
+// Metosdos
 	public static double[] getPesos(String[] data){
 
 		double[] pesos = new double[data.length-1];
@@ -159,6 +174,7 @@ public class Lab2 {
 		}
 		return pesos;
 	}
+
 
 	public static double[] getEstaturas(String[] data){
 
@@ -173,6 +189,7 @@ public class Lab2 {
 		return estaturas;
 	}
 
+
 	public static char[] getGeneros(String[] data){
 
 		char[] generos = new char[data.length-1];
@@ -184,6 +201,7 @@ public class Lab2 {
 		}
 		return generos;
 	}
+
 
 	public static String[] getNombresCompletos(String[] data){
 
@@ -198,20 +216,19 @@ public class Lab2 {
 	}
 
 
-/*
-	public static String[] getFechasDeNacimientos(String[] data){
+	public static LocalDate[] getFechasDeNacimientos(String[] data){
 
-		String[] fechasDeNacimiento = new String[data.length-1];
+		LocalDate[] fechasDeNacimiento = new LocalDate[data.length-1];
 
 		for ( int i = 1; i < data.length; i++ ) {
 			String[] datum = data[i].split( "," );
 			String fechaDeNacimiento = datum[2];
-			fechasDeNacimiento[i-1] = String.parse( fechaDeNacimiento, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+			fechasDeNacimiento[i-1] = LocalDate.parse( fechaDeNacimiento, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
 		}
-		String[] fechasDeNacimiento2 = new String[3];
-		return fechasDeNacimiento2;
+		return fechasDeNacimiento;
 	}
-*/
+
+
 	public static String[] getDirecciones(String[] data){
 
 		String[] direcciones = new String[data.length-1];

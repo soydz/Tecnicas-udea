@@ -46,7 +46,6 @@ record InformacionPersonal(String nombres, String apellidos, LocalDate fechaNaci
 
 	public static void main(String[] args) {
 		
-		//InformacionPersonal[] bd = new InformacionPersonal[10];
 		List<InformacionPersonal> bd = new ArrayList<>();
 
 		bd.add( new InformacionPersonal("Juan","Pérez",LocalDate.parse("15/03/1985", DateTimeFormatter.ofPattern("dd/MM/uuuu")),"Calle 123","Medellin","Licenciatura en Ingeniería","Ingeniero de Software",'M',70,1.75));

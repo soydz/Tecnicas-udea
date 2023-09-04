@@ -12,7 +12,7 @@
 class Ejercicio2 {
     public static void main(String[] args) {
         // a
-        int suma = 40 + 50 + 60 + 24 + 66 + 12 + 98;
+        double suma = 40 + 50 + 60 + 24 + 66 + 12 + 98;
         int num = 7;
         
         double promedio = suma/num;
